@@ -14,7 +14,6 @@ So here is what I would like to be sent a link to
 Push all this to a repo and link me once you're done.
 
 Thanks!
-
 -- 
 Pin Chen
 CTO
