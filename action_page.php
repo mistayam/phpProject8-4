@@ -56,7 +56,7 @@ $tbl = "CREATE TABLE IF NOT EXISTS " .$tblname .
 
 if($conn->query($tbl) === TRUE)
 {
-	echo "Table '" . $tblname . "'' created successfuly!<br>";
+	echo "Table '" . $tblname . "' created successfuly!<br>";
 }
 else
 {
