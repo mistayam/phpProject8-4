@@ -19,9 +19,9 @@ August 5th, 2015
 --
 Great, let's see if you can get mysql database going locally. 
 
-1) Create a database
-2) Create a table on that database with the columns firstname, lastname, email
-3) On the action_page.php, connect to the database and store the info into the database while also outputting it.
+1) Create a database.<br>
+2) Create a table on that database with the columns firstname, lastname, email.<br>
+3) On the action_page.php, connect to the database and store the info into the database while also outputting it.<br>
 
 Thanks!
 
