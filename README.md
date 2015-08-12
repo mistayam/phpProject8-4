@@ -25,7 +25,20 @@ Great, let's see if you can get mysql database going locally.
 2) Create a table on that database with the columns firstname, lastname, email.<br>
 3) On the action_page.php, connect to the database and store the info into the database while also outputting it.<br>
 
+--
+Sweet! 
 
+Few changes, remove all the debug code and instead of echoing on the same php page, have it redirect to a thank you page.. saying something like thank you $firstname. That way you can seperate the logic from the html
+
+Onward!
+
+--
+
+As for the reg_date stuff, when dealing with databases, try not to use their baked in time stuff. Generate your own in the code.. so use time() and then plug that into the db.
+
+Also try not to put create statements in your code. You usually want the user who accesses the db be different from the person who inserts data into it.
+
+Thanks!
 
 -- 
 Pin Chen
