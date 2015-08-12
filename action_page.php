@@ -5,7 +5,8 @@
 	$password = "password";
 	$dbname = "record";
 	$tblname = "contacts";
-
+	date_default_timezone_set("America/Los_Angeles");
+	
 	//Connect to server	
 	$conn = new mysqli($servername, $username, $password);
 	if($conn->connect_error)
@@ -16,8 +17,8 @@
 	$conn->select_db($dbname);
 
 	//Inserts information into table
-	$sql = "INSERT INTO " . $tblname . "(firstname, lastname, email)
-	VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "')";
+	$sql = "INSERT INTO " . $tblname . "(firstname, lastname, email, reg_date)
+	VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . date("m/d/Y h:i:sa") . "')";
 
 	if($conn->query($sql) === TRUE)
 	{
