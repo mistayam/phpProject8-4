@@ -25,6 +25,7 @@ Great, let's see if you can get mysql database going locally.
 2) Create a table on that database with the columns firstname, lastname, email.<br>
 3) On the action_page.php, connect to the database and store the info into the database while also outputting it.<br>
 
+August 11th, 2015
 --
 Sweet! 
 
@@ -39,6 +40,14 @@ As for the reg_date stuff, when dealing with databases, try not to use their bak
 Also try not to put create statements in your code. You usually want the user who accesses the db be different from the person who inserts data into it.
 
 Thanks!
+
+August 12th, 2015
+--
+Because the repository has a history, there isn't a reason to keep useless files. Go ahead and delete the "old" file and check pervious commits to see the changes you've made.
+
+Additionally let's seperate out the mysql details and put them into a config.inc.php file that gets included where needed. Let's add some fields to your form, username and password (password should be password input type) and then cram that info into the database.
+
+Then create another form that when you fill out (username,password) it sees if its in the database and if it is it will redirect to a success.php page that says you have been successful in logging in. If if fails, should redirect back to the login script and say bad creds or bad username.
 
 -- 
 Pin Chen
