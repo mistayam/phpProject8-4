@@ -1,0 +1,12 @@
+.register{
+    float: left;
+    width:50%
+}
+.login{
+    float: right;
+    width: 50%;
+}
+
+.error {
+	color: #FF0000;
+}

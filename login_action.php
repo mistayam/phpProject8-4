@@ -1,4 +1,5 @@
 <center>
+		<!-- 		
 		<?php
 			$servername = "localhost";
 			$username = "username";
@@ -20,5 +21,13 @@
 			echo "Thank you <b>" . $row['firstName'] . "</b>!";
 
 			$conn->close();
-		?>
+		?> 
+		-->
+<!-- 
+	connect to database
+	look for username and password in table
+	if credentials do not match any field redirect to login page
+	else go to success page (perhaps with "logged in as $firstname/$username")
+ -->
+
 </center>

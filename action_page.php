@@ -4,7 +4,7 @@
 	$username = "username";
 	$password = "password";
 	$dbname = "record";
-	$tblname = "contacts";
+	$tblname = "accounts";
 	date_default_timezone_set("America/Los_Angeles");
 	
 	//Connect to server	
@@ -17,8 +17,8 @@
 	$conn->select_db($dbname);
 
 	//Inserts information into table
-	$sql = "INSERT INTO " . $tblname . "(firstname, lastname, email, reg_date)
-	VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . date("m/d/Y h:i:sa") . "')";
+	$sql = "INSERT INTO " . $tblname . "(firstname, lastname, email, username, password, reg_date)
+	VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . date("m/d/Y h:i:sa") . "')";
 
 	if($conn->query($sql) === TRUE)
 	{
