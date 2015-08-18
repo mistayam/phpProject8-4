@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <head>
-<title>Login to ONTRAPORT</title>
+<title>Register for ONTRAPORT</title>
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
 <html>
   <center>
-   <div class = "register log">
+   <div class = "register">
     <form action="action_page.php" method = "post">
         <table>
-          <img src = "ontraport-signup.png"><br><br>
+          <img src = "ontraport-signup.png">
           <tr>
             <td><b>First Name:</b></td>
             <td><input type="text" name="firstname" value="" required></td>
@@ -35,27 +35,8 @@
             <td align = "left"><input type="submit" name="register" value="Register"><td>
           </tr>
         </table>
+        <a href = 'login.php'>Existing user? Click here to login!</a>
       </form>
-    </div>
-                        
-  <div class = "login reg">
-    <form action="login_action.php" method = "post">
-        <table>
-          <img src = "ontraport-signin.png"><br><br>
-          <tr>
-            <td><b>Username:</b></td>
-            <td><input type="text" name="username" value="" required></td>
-          </tr>
-          <tr>
-            <td><b>Password:</b></td>
-            <td><input type="password" name="password" value="" required></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td align = "left"><input type="submit" name="login" value="Login" ><td>
-          </tr>
-        </table>
-      </form>
-    </div>
+    </div>                 
   </center>
 </html>

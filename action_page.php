@@ -1,11 +1,6 @@
 <?php
 	//Declare variables
-	$servername = "localhost";
-	$username = "username";
-	$password = "password";
-	$dbname = "record";
-	$tblname = "accounts";
-	date_default_timezone_set("America/Los_Angeles");
+	include('config.inc.php');
 	
 	//Connect to server	
 	$conn = new mysqli($servername, $username, $password);
@@ -31,5 +26,7 @@
 
 	//end connection
 	$conn->close();
+
+	//redirect to a thank you page
 	header( 'Location: thankyoupage.php?lastid=' . $last_id);
 ?>
