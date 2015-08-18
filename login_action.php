@@ -1,33 +1,33 @@
-<center>
-		<!-- 		
-		<?php
-			$servername = "localhost";
-			$username = "username";
-			$password = "password";
-			$dbname = "record";
-			$tblname = "accounts";
+<?php
+	//declare variables
+	require_once('config.inc.php');
 
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			if($conn->connect_error)
-			{
-				die("Connection failed: " . $conn->connect_error);
-			}
+	//establish connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if($conn->connect_error)
+	{
+		die("Connection failed: " . $conn->connect_error);
+	}
 
-			$idNumber = $_GET['lastid'];
-			$sql = "SELECT `firstName` FROM `" . $tblname . "` WHERE id = $idNumber";
-			$firstName = $conn->query($sql);
-		    $row = $firstName->fetch_assoc();
+	//check the password entered against password stored for user
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	$sql = "SELECT `password` FROM `" . $tblname . "` WHERE username = '" . $username . "'";
+	$pw = $conn->query($sql);
+    $row = $pw->fetch_assoc();
 
-			echo "Thank you <b>" . $row['firstName'] . "</b>!";
-
-			$conn->close();
-		?> 
-		-->
-<!-- 
-	connect to database
-	look for username and password in table
-	if credentials do not match any field redirect to login page
-	else go to success page (perhaps with "logged in as $firstname/$username")
- -->
-
-</center>
+    //if the passwords don't match, send to a failure page, otherwise send user to success page
+    if ($password != $row['password'])
+    {
+		header( 'Location: login.php?failed=true');
+    }
+    else
+    {
+    	$id_sql = "SELECT `id` FROM `" . $tblname . "` WHERE username = '" . $username . "'";
+    	$uid = $conn->query($id_sql);
+    	$id = $uid->fetch_assoc();
+    	header( 'Location: login_success.php?id=' . $id['id']);
+    }
+    
+    //close connection
+	$conn->close();
