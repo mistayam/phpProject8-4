@@ -1,7 +1,7 @@
 # phpProject8-4
 PHP Project assigned by Pin Chen on August 4th, 2015
 
-August 4th, 2015
+August 4th, 2015 ✔
 --
 Hey all,
 
@@ -17,7 +17,7 @@ Push all this to a repo and link me once you're done.
 
 Thanks!
 
-August 5th, 2015
+August 5th, 2015 ✔
 --
 Great, let's see if you can get mysql database going locally. 
 
@@ -25,7 +25,7 @@ Great, let's see if you can get mysql database going locally.
 2) Create a table on that database with the columns firstname, lastname, email.<br>
 3) On the action_page.php, connect to the database and store the info into the database while also outputting it.<br>
 
-August 11th, 2015
+August 11th, 2015 ✔
 --
 Sweet! 
 
