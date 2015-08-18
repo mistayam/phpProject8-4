@@ -11,7 +11,7 @@
     $failed = $_GET['failed'];
     if ($failed == true)
     {
-      echo "<center>We didn't recognize the username or password you entered. Please try again.</center><br>";
+      echo "<center><img src = 'CautionIcon.gif'> We didn't recognize the username or password you entered. Please try again.</center><br>";
     }
   }
 ?>
