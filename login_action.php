@@ -1,6 +1,6 @@
 <?php
 	//declare variables
-	include('config.inc.php');
+	require_once('config.inc.php');
 
 	//establish connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,9 +23,11 @@
     }
     else
     {
-    	header( 'Location: login_success.php');
+    	$id_sql = "SELECT `id` FROM `" . $tblname . "` WHERE username = '" . $username . "'";
+    	$uid = $conn->query($id_sql);
+    	$id = $uid->fetch_assoc();
+    	header( 'Location: login_success.php?id=' . $id['id']);
     }
     
     //close connection
 	$conn->close();
-?>

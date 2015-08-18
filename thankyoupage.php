@@ -1,7 +1,7 @@
 <center>
 	<?php
 		//declares variables
-		include('config.inc.php');
+		require_once('config.inc.php');
 
 		//establishes connection
 		$conn = new mysqli($servername, $username, $password, $dbname);

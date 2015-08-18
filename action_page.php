@@ -1,6 +1,6 @@
 <?php
 	//Declare variables
-	include('config.inc.php');
+	require_once('config.inc.php');
 	
 	//Connect to server	
 	$conn = new mysqli($servername, $username, $password);
@@ -29,4 +29,3 @@
 
 	//redirect to a thank you page
 	header( 'Location: thankyoupage.php?lastid=' . $last_id);
-?>
