@@ -41,7 +41,7 @@ Also try not to put create statements in your code. You usually want the user wh
 
 Thanks!
 
-August 12th, 2015
+August 12th, 2015 ✔
 --
 Because the repository has a history, there isn't a reason to keep useless files. Go ahead and delete the "old" file and check pervious commits to see the changes you've made.
 
