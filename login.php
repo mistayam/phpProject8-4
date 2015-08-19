@@ -35,7 +35,7 @@
             <td align = "left"><input type="submit" name="login" value="Login" ><td>
           </tr>
         </table>
-        <a href='register.html'>New member? Create an account here!</a>
+        <a href='register.php'>New member? Create an account here!</a>
       </form>
     </div>
   </center>

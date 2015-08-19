@@ -11,21 +11,54 @@
 
 	$conn->select_db($dbname);
 
-	//Inserts information into table
-	$sql = "INSERT INTO " . $tblname . "(firstname, lastname, email, username, password, reg_date)
-	VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . date("m/d/Y h:i:sa") . "')";
+	//makes sure the username and e-mail doesn't already exist
+	//sets count variables to the number of rows in table with same email and database
+	$userCheck = "SELECT `username` FROM `" . $tblname . "` WHERE username = '" . $_POST['username'] . "'";
+	$userResult = $conn->query($userCheck);
+	$userCount = $userResult->num_rows;
 
-	if($conn->query($sql) === TRUE)
+	$emailCheck = "SELECT `email` FROM `" . $tblname . "` WHERE email = '" . $_POST['email'] . "'";
+	$emailResult = $conn->query($emailCheck);
+	$emailCount = $emailResult->num_rows;
+
+	//if there are no matches for either email or username, add to table
+	if ($userCount == 0 && $emailCount == 0)
 	{
-		$last_id = $conn->insert_id;
+		//Inserts information into table
+		$sql = "INSERT INTO `" . $tblname . "` (firstname, lastname, email, username, password, reg_date)
+		VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . date("m/d/Y h:i:sa") . "')";
+
+		if($conn->query($sql) === TRUE)
+		{
+			$last_id = $conn->insert_id;
+		}
+		else
+		{
+			echo "Error: " . $sql . "<br>" . $conn->error . "<br>";
+		}
+
+		//end connection
+		$conn->close();
+
+		//redirect to a thank you page
+		header( 'Location: thankyoupage.php?lastid=' . $last_id);
 	}
+	//otherwise, redirect to register page with error message depending on which one matched
 	else
 	{
-		echo "Error: " . $sql . "<br>" . $conn->error . "<br>";
+		//set error based on which field matches value in table
+		if ($userCount > 0)
+		{
+			$used = "username";
+		}
+		else if ($emailCount > 0)
+		{
+			$used = "email";
+		}
+
+		//close connection
+		$conn->close();
+
+		//redirect to register page with error
+		header( 'Location: register.php?inuse=' . $used);
 	}
-
-	//end connection
-	$conn->close();
-
-	//redirect to a thank you page
-	header( 'Location: thankyoupage.php?lastid=' . $last_id);

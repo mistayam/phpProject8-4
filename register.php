@@ -4,6 +4,22 @@
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 
+<?php
+  $get = isset($_GET['inuse']);
+  if ($get == true)
+  {
+    $used = $_GET['inuse'];
+    if ($used == 'username')
+    {
+      echo "<center><img src = 'CautionIcon.gif'> Username in use. Please try another one.</center><br>";
+    }
+    else if ($used == 'email')
+    {
+      echo "<center><img src = 'CautionIcon.gif'> Email in use. Please try try another one.</center><br>";
+    }
+  }
+?>
+
 <html>
   <center>
    <div class = "register">
@@ -20,7 +36,7 @@
           </tr>
           <tr>
             <td><b>Email:</b></td>
-            <td><input type="text" name="email" value="" required></td>
+            <td><input type="email" name="email" value="" required></td>
           </tr>
           <tr>
             <td><b>Username:</b></td>
