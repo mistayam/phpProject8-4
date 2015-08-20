@@ -49,7 +49,7 @@ Additionally let's seperate out the mysql details and put them into a config.inc
 
 Then create another form that when you fill out (username,password) it sees if its in the database and if it is it will redirect to a success.php page that says you have been successful in logging in. If if fails, should redirect back to the login script and say bad creds or bad username.
 
-August 18th, 2015
+August 18th, 2015 ✔
 --
 Sweet. Do a mysql dump of your database and include it in the PR (don't include any of your test data)
 
