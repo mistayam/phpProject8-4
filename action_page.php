@@ -62,3 +62,7 @@
         //redirect to register page with error
         header( 'Location: register.php?inuse=' . $used);
     }
+
+//TODO
+//add password encrypting when adding password to database
+// and password decrypting when comparing passwords inputted and on record

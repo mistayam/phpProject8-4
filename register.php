@@ -5,19 +5,23 @@
 </head>
 
 <?php
-  $get = isset($_GET['inuse']);
-  if ($get == true)
+//checks link of page to make sure there was no error
+//if there is a get variable, there was an error so proceed with error message
+$get = isset($_GET['inuse']);
+
+//error message is dependent on what the get variable was set to
+if ($get == true)
+{
+  $used = $_GET['inuse'];
+  if ($used == 'username')
   {
-    $used = $_GET['inuse'];
-    if ($used == 'username')
-    {
-      echo "<center><img src = 'CautionIcon.gif'> Username in use. Please try another one.</center><br>";
-    }
-    else if ($used == 'email')
-    {
-      echo "<center><img src = 'CautionIcon.gif'> Email in use. Please try try another one.</center><br>";
-    }
+    echo "<center><img src = 'CautionIcon.gif'> Username in use. Please try another one.</center><br>";
   }
+  else if ($used == 'email')
+  {
+    echo "<center><img src = 'CautionIcon.gif'> Email in use. Please try try another one.</center><br>";
+  }
+}
 ?>
 
 <html>
