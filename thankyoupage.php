@@ -12,7 +12,7 @@
 
 		//checks for last id inserted and stores the firstname
 		$idNumber = $_GET['lastid'];
-		$sql = "SELECT `firstName` FROM `" . $tblname . "` WHERE id = $idNumber";
+		$sql = "SELECT `firstName` FROM `" . $tblname . "` WHERE id = " . $idNumber;
 		$firstName = $conn->query($sql);
 	    $row = $firstName->fetch_assoc();
 
