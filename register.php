@@ -53,6 +53,6 @@
         </table>
         <a href = 'login.php'>Existing user? Click here to login!</a>
       </form>
-    </div>                 
+    </div>
   </center>
 </html>
