@@ -57,10 +57,10 @@ Next create a php object "User"
 
 ideally these calls should work
 
-$user = new User():
-$user->setValue("firstname","test");
-$user->setValue("lastname","test2");
-$user->save();
+$user = new User();<br>
+$user->setValue("firstname","test");<br>
+$user->setValue("lastname","test2");<br>
+$user->save();<br>
 
 echo $user->getValue("firstname"); //Should output "test"
 
