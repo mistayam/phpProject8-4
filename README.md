@@ -49,7 +49,7 @@ Additionally let's seperate out the mysql details and put them into a config.inc
 
 Then create another form that when you fill out (username,password) it sees if its in the database and if it is it will redirect to a success.php page that says you have been successful in logging in. If if fails, should redirect back to the login script and say bad creds or bad username.
 
-August 18th, 2015✔
+August 18th, 2015 ✔
 --
 Sweet. Do a mysql dump of your database and include it in the PR (don't include any of your test data)
 
@@ -67,6 +67,21 @@ echo $user->getValue("firstname"); //Should output "test"
 User::Get($username)  //Should return a User object with the data populated for that user
 
 Let me know if you need more clarity.
+
+--
+<u>Comments made on Github PR:</u>
+-Probably want to include require_once.. if you do include.. what happens if the file is missing or include fails?<br>
+-Don't close php files. esp if you're not outputting stuff.<br>
+-This should be outputting the username right?<br>
+
+August 20th, 2015
+--
+<u>Comments made on Github PR:</u>
+-Try not to put echos (views) in your model code, have it return an error and have the person using the object decide whether or not to output. Make sense?<br>
+-Let's put some comments on this<br>
+-Put test code in another file when doing testing<br>
+-Look up mysql injection and how to prevent people from dropping your mysql tables.<br>
+
 
 -- 
 Pin Chen
