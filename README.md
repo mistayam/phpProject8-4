@@ -70,18 +70,17 @@ Let me know if you need more clarity.
 
 --
 Comments made on Github PR <b>August 18th, 2015</b>
--Probably want to include require_once.. if you do include.. what happens if the file is missing or include fails?
--Don't close php files. esp if you're not outputting stuff.
--This should be outputting the username right?
+-Probably want to include require_once.. if you do include.. what happens if the file is missing or include fails?<br>
+-Don't close php files. esp if you're not outputting stuff.<br>
+-This should be outputting the username right?<br>
 
 August 20th, 2015
 --
 Comments made on Github PR <b>August 20th, 2015</b>
--Try not to put echos (views) in your model code, have it return an error and have the person using the object decide whether or not to output. Make sense?
--Let's put some comments on this
--Put test code in another file when doing testing
--Look up mysql injection and how to prevent people from dropping your mysql tables.
-
+-Try not to put echos (views) in your model code, have it return an error and have the person using the object decide whether or not to output. Make sense?<br>
+-Let's put some comments on this<br>
+-Put test code in another file when doing testing<br>
+-Look up mysql injection and how to prevent people from dropping your mysql tables.<br>
 
 
 -- 
