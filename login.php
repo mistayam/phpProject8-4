@@ -5,15 +5,17 @@
 </head>
 
 <?php
-  $get = isset($_GET['failed']);
-  if ($get == true)
+//checks link of page to make sure there was no error
+//if there is a get variable, there was an error so proceed with error message
+$get = isset($_GET['failed']);
+if ($get == true)
+{
+  $failed = $_GET['failed'];
+  if ($failed == true)
   {
-    $failed = $_GET['failed'];
-    if ($failed == true)
-    {
-      echo "<center><img src = 'CautionIcon.gif'> We didn't recognize the username or password you entered. Please try again.</center><br>";
-    }
+    echo "<center><img src = 'CautionIcon.gif'> We didn't recognize the username or password you entered. Please try again.</center><br>";
   }
+}
 ?>
 
 <html>
@@ -35,7 +37,7 @@
             <td align = "left"><input type="submit" name="login" value="Login" ><td>
           </tr>
         </table>
-        <a href='register.html'>New member? Create an account here!</a>
+        <a href='register.php'>New member? Create an account here!</a>
       </form>
     </div>
   </center>
