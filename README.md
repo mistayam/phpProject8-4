@@ -74,7 +74,7 @@ Let me know if you need more clarity.
 -Don't close php files. esp if you're not outputting stuff.<br>
 -This should be outputting the username right?<br>
 
-August 20th, 2015
+August 20th, 2015 ✔
 --
 <u>Comments made on Github PR:</u><br>
 -Try not to put echos (views) in your model code, have it return an error and have the person using the object decide whether or not to output. Make sense?<br>
