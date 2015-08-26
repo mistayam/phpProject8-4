@@ -15,11 +15,11 @@ if ($get == true)
   $used = $_GET['inuse'];
   if ($used == 'username')
   {
-    echo "<center><img src = 'CautionIcon.gif'> Username in use. Please try another one.</center><br>";
+    echo "<center><img src = 'CautionIcon.gif'> Username in use. Please try another one.</center>";
   }
   else if ($used == 'email')
   {
-    echo "<center><img src = 'CautionIcon.gif'> Email in use. Please try try another one.</center><br>";
+    echo "<center><img src = 'CautionIcon.gif'> Email in use. Please try try another one.</center>";
   }
 }
 ?>

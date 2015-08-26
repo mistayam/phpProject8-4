@@ -59,9 +59,25 @@ class User {
             }
 
             //insert the contact using the data members stored in the object
-            $sql = "INSERT INTO `" . $tblname . "` (firstname, lastname, email, username, password, reg_date)
-            VALUES ('" . $this->firstname . "', '" . $this->lastname . "', '" . $this->email . "', '" . $this->username . "', '" . $this->password . "', '" . date("m/d/Y h:i:sa") . "')";
-            $conn->query($sql);
+            //prepares a statement to inserts information into table
+            $stmt = $conn->prepare("INSERT INTO `" . $tblname . "` (firstname, lastname, email, username, password, reg_date) VALUES (?,?,?,?,?,?)");
+
+            //declares variables for each input from the form
+            $fn = $this->firstname;
+            $ln = $this->lastname;
+            $em = $this->email;
+            $un = $this->username;
+            $pw = $this->password;
+            $date = date("m/d/Y h:i:sa");
+
+            //binds each variable to the prepared statement
+            $stmt->bind_param("ssssss", $fn, $ln, $em, $un, $pw, $date);
+
+            //execute the statement
+            $stmt->execute();
+
+            //close prepared statement
+            $stmt->close();
 
             //close connection
             $conn->close();
@@ -114,22 +130,33 @@ class User {
         }
 
         //select a user with the same username specified by the user input ($uname variable)
-        $sql = "SELECT * FROM `" . $tblname . "` WHERE `username` = '" . $uname . "'";
-        $contact = $conn->query($sql);
-        $row = $contact->fetch_assoc();
 
-        //create a new User object and populate its data members with the data from the table
+        //creates a prepared statement
+        $stmt = $conn->prepare("SELECT * FROM `" . $tblname . "` WHERE `username` = ?");
+
+        //binds the $uname variable to the prepared statement and executes the statement
+        //bind the returned results to the variables corresponding to the id, first name, last name, email, username, password, and date of the user respetively
+        //fetch that result
+        $stmt->bind_param("s", $uname);
+        $stmt->execute();
+        $stmt->bind_result($id, $fn, $ln, $em, $un, $pw, $date);
+        $stmt->fetch();
+
+        //create a new User object and populate its data members with the data from the fetch 
         $user = new User();
-        $user->setValue("firstname", $row['firstName']);
-        $user->setValue("lastname", $row['lastName']);
-        $user->setValue("email", $row['email']);
-        $user->setValue("username", $row['username']);
-        $user->setValue("password", $row['password']);
+        $user->setValue("firstname", $fn);
+        $user->setValue("lastname", $ln);
+        $user->setValue("email", $em);
+        $user->setValue("username", $un);
+        $user->setValue("password", $pw);
 
-        //return the user object
-        return $user;
-        
+        //closes prepared statement
+        $stmt->close();
+
         //closes connection
         $conn->close();
+
+        //return the user object
+        return $user;        
     }
 }
