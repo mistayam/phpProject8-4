@@ -82,7 +82,7 @@ August 20th, 2015 ✔
 -Put test code in another file when doing testing<br>
 -Look up mysql injection and how to prevent people from dropping your mysql tables.<br>
 
-August 26th, 2015
+August 26th, 2015 ✔
 --
 <b>Comments made on Github PR:</b><br>
 -There should be something like num_rows for mysqli which you can get the number of rows without iterating through.<br>
