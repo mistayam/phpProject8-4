@@ -13,10 +13,6 @@
     $conn->select_db($dbname);
 
     //makes sure the username and e-mail doesn't already exist
-    //sets count variables to the number of rows in table with same email and username (initially)
-    $userCount = 0;
-    $emailCount = 0;
-
     //existing-username check with prepared statement
     if ($stmt = $conn->prepare("SELECT `username` FROM `" . $tblname . "` WHERE username = ?"))
     {  
@@ -24,19 +20,12 @@
         $user = $_POST['username'];
 
         //binds email input to the prepared statement and execute it
+        //binds the result of the statement to a variable and count how many rows were found. 
         $stmt->bind_param("s", $user);
-        $stmt->bind_result($userBind);
         $stmt->execute();
+        $stmt->store_result();
 
-        //binds the result of the statement to a variable and fetch in a loop. 
-        
-
-        //fetch returns true if data was fetched. 
-        //the while loop will increment $emailCount until there are no more data.
-        while($stmt->fetch())
-        {
-            $userCount++;
-        }
+        $userCount = $stmt->num_rows;
 
         $stmt->close();
     }
@@ -48,18 +37,12 @@
         $email = $_POST['email'];
 
         //binds email input to the prepared statement and execute it 
+        //binds the result of the statement to a variable and count how many rows were found.
         $stmt->bind_param("s", $email);
         $stmt->execute();
+        $stmt->store_result();
 
-        //binds the result of the statement to a variable and fetch in a loop. 
-        $stmt->bind_result($emailBind);
-
-        //fetch returns true if data was fetched. 
-        //the while loop will increment $emailCount until there are no more data.
-        while($stmt->fetch())
-        {
-            $emailCount++;
-        }
+        $emailCount = $stmt->num_rows;
 
         $stmt->close();
     }
@@ -92,6 +75,7 @@
             return $err;
         }
 
+        //close prepared statement
         $stmt->close();
 
         //end connection
