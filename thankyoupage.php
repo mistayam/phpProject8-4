@@ -12,14 +12,24 @@
 
         //checks for last id inserted and stores the firstname
         $idNumber = $_GET['lastid'];
-        $sql = "SELECT `firstName` FROM `" . $tblname . "` WHERE id = " . $idNumber;
-        $firstName = $conn->query($sql);
-        $row = $firstName->fetch_assoc();
 
-        //echo out success messages
-        echo "Thank you <b>" . $row['firstName'] . "</b>!<br>";
+        //creates prepared statement
+        $stmt = $conn->prepare("SELECT `firstName` FROM `" . $tblname . "` WHERE id = ?");
+
+        //binds $idNumber to prepared statement and executes
+        //binds the result to $fName and fetches it
+        $stmt->bind_param("i", $idNumber);
+        $stmt->execute();
+        $stmt->bind_result($fName);
+        $stmt->fetch();
+
+        //echo out success messages with the fetched value for $fName
+        echo "Thank you <b>" . $fName . "</b>!<br>";
         echo "Your account has been created successfully.<br>";
         echo "<a href = 'login.php'>Click here to login</a>";
+
+        //close prepared statement
+        $stmt->close();
 
         //closes connection
         $conn->close();

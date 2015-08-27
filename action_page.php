@@ -9,33 +9,74 @@
         die("Connection failed: " . $conn->connect_error);  
     }
 
+    //Select desired database
     $conn->select_db($dbname);
 
     //makes sure the username and e-mail doesn't already exist
-    //sets count variables to the number of rows in table with same email and database
-    $userCheck = "SELECT `username` FROM `" . $tblname . "` WHERE username = '" . $_POST['username'] . "'";
-    $userResult = $conn->query($userCheck);
-    $userCount = $userResult->num_rows;
+    //existing-username check with prepared statement
+    if ($stmt = $conn->prepare("SELECT `username` FROM `" . $tblname . "` WHERE username = ?"))
+    {  
+        //$user is the username input at the previous page
+        $user = $_POST['username'];
 
-    $emailCheck = "SELECT `email` FROM `" . $tblname . "` WHERE email = '" . $_POST['email'] . "'";
-    $emailResult = $conn->query($emailCheck);
-    $emailCount = $emailResult->num_rows;
+        //binds email input to the prepared statement and execute it
+        //binds the result of the statement to a variable and count how many rows were found. 
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $stmt->store_result();
+
+        $userCount = $stmt->num_rows;
+
+        $stmt->close();
+    }
+
+    //existing-email check with prepared statement
+    if ($stmt = $conn->prepare("SELECT `email` FROM `" . $tblname . "` WHERE email = ?"))
+    {  
+        //$email is the email input at the previous page
+        $email = $_POST['email'];
+
+        //binds email input to the prepared statement and execute it 
+        //binds the result of the statement to a variable and count how many rows were found.
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        $emailCount = $stmt->num_rows;
+
+        $stmt->close();
+    }
 
     //if there are no matches for either email or username, add to table
     if ($userCount == 0 && $emailCount == 0)
     {
-        //Inserts information into table
-        $sql = "INSERT INTO `" . $tblname . "` (firstname, lastname, email, username, password, reg_date)
-        VALUES ('" . $_POST['firstname'] . "', '" . $_POST['lastname'] . "', '" . $_POST['email'] . "', '" . $_POST['username'] . "', '" . $_POST['password'] . "', '" . date("m/d/Y h:i:sa") . "')";
+        //prepares a statement to inserts information into table
+        $stmt = $conn->prepare("INSERT INTO `" . $tblname . "` (firstname, lastname, email, username, password, reg_date) VALUES (?,?,?,?,?,?)");
 
-        if($conn->query($sql) === TRUE)
+        //declares variables for each input from the form
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $date = date("m/d/Y h:i:sa");
+
+        //binds each variable to the prepared statement
+        $stmt->bind_param("ssssss", $firstname, $lastname, $email, $username, $password, $date);
+
+        //if the statement executes successfully, log the id that was last inputted. otherwise return an error.
+        if($stmt->execute() === TRUE)
         {
             $last_id = $conn->insert_id;
         }
         else
         {
-            echo "Error: " . $sql . "<br>" . $conn->error . "<br>";
+            $err = "Error: " . $sql . "<br>" . $conn->error . "<br>";
+            return $err;
         }
+
+        //close prepared statement
+        $stmt->close();
 
         //end connection
         $conn->close();

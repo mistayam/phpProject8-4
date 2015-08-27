@@ -12,12 +12,23 @@
 
         //checks for last id inserted and stores the firstname
         $id = $_GET['id'];
-        $sql = "SELECT `username` FROM `" . $tblname . "` WHERE id = " . $id;
-        $username = $conn->query($sql);
-        $row = $username->fetch_assoc();
+        
+        //creates prepared statement
+        $stmt = $conn->prepare("SELECT `username` FROM `" . $tblname . "` WHERE id = ?");
 
+        //binds $id to prepared statement and executes
+        //binds the result to $uname and fetches it
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->bind_result($uname);
+        $stmt->fetch();
+
+        //echo out success messages with the fetched value for $fName
         echo "You have been successfully logged in!<br>";
-        echo "Welcome back <b>" . $row['username'] . "<b>.";
+        echo "Welcome back <b>" . $uname . "<b>.";
+
+        //closes prepared statement
+        $stmt->close();
 
         //closes connection
         $conn->close();
