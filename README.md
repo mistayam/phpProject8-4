@@ -82,6 +82,11 @@ August 20th, 2015 ✔
 -Put test code in another file when doing testing<br>
 -Look up mysql injection and how to prevent people from dropping your mysql tables.<br>
 
+August 26th, 2015
+--
+<u>Comments made on Github PR:</u><br>
+-There should be something like num_rows for mysqli which you can get the number of rows without iterating through.<br>
+-Why not just put these $this-> vars directly into the bind? Seems superfluous
 
 -- 
 Pin Chen
